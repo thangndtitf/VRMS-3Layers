@@ -33,7 +33,7 @@ namespace VRMS_3layers.DAL.Customer
             }
             else
             {
-                return customerDbContextcs.MdCustomers.FirstOrDefault(c => c.Customerid == customerId);
+                return customerDbContextcs.MdCustomers.FirstOrDefault(c=> c.Customerid == customerId);
             }
         }
 
