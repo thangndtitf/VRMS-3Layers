@@ -1,6 +1,6 @@
 ﻿using VRMS_3layers.DAL.User;
 using VRMS_3layers.Models.ResultObj;
-using VRMS_3layers.Models.User;
+using VRMS_3Layers.Models.User;
 
 namespace VRMS_3layers.BLL.User
 {

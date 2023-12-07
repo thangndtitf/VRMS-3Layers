@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VRMS_3layers.Models.Customer;
+namespace VRMS_3Layers.Models.Customer;
 
 public partial class MdCustomer
 {
@@ -70,5 +70,5 @@ public partial class MdCustomer
     /// </summary>
     public string Passworld { get; set; } = null!;
 
- 
+    public virtual MdCustomertype Customertype { get; set; } = null!;
 }

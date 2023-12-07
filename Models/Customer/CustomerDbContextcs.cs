@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace VRMS_3layers.Models.Customer;
+namespace VRMS_3Layers.Models.Customer;
 
 public partial class CustomerDbContextcs : DbContext
 {
@@ -81,7 +81,10 @@ public partial class CustomerDbContextcs : DbContext
                 .HasComment("Mật khẩu đăng nhập hệ thống")
                 .HasColumnName("PASSWORLD");
 
-         
+            entity.HasOne(d => d.Customertype).WithMany(p => p.MdCustomers)
+                .HasForeignKey(d => d.Customertypeid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_CUSTOMERTYPEID");
         });
 
         modelBuilder.Entity<MdCustomertype>(entity =>
@@ -115,8 +118,6 @@ public partial class CustomerDbContextcs : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
-
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

@@ -2,7 +2,7 @@
 using Npgsql;
 using NpgsqlTypes;
 using System.Data.SqlClient;
-using VRMS_3layers.Models.Customer;
+using VRMS_3Layers.Models.Customer;
 
 namespace VRMS_3layers.DAL.Customer
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VRMS_3layers.Models.Customer;
+namespace VRMS_3Layers.Models.Customer;
 
 public partial class MdCustomertype
 {
@@ -35,4 +35,5 @@ public partial class MdCustomertype
     /// </summary>
     public DateOnly Createddate { get; set; }
 
+    public virtual ICollection<MdCustomer> MdCustomers { get; set; } = new List<MdCustomer>();
 }

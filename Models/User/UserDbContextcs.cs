@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace VRMS_3layers.Models.User;
+namespace VRMS_3Layers.Models.User;
 
 public partial class UserDbContextcs : DbContext
 {

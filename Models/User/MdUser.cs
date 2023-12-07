@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VRMS_3layers.Models.User;
+namespace VRMS_3Layers.Models.User;
 
 /// <summary>
 /// Danh sách nhân viên
