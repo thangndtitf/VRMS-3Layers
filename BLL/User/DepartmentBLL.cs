@@ -21,6 +21,12 @@ namespace VRMS_3layers.BLL.User
                 result.messageDetail = string.Empty;
                 result.dataObject = listDepartment;
                 
+            }else if(listDepartment.Count <= 0)
+            {
+                result.isError = false;
+                result.message = "List Department is empty ";
+                result.messageDetail = string.Empty;
+                result.dataObject = listDepartment;
             }
             else
             {

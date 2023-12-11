@@ -13,7 +13,15 @@ namespace VRMS_3layers.BLL.Customer
         {
             ResultObject result = new ResultObject();
             List<MdCustomer> customerList = customerDal.GetListCustomer();
-            if(customerList.Count > 0)
+            if(customerList == null)
+            {
+                result.isError = true;
+                result.message = "Get List Fail.";
+                result.messageDetail = "List Customer is NUll";
+                result.dataObject = null;
+                return result;
+            }
+            else if(customerList.Count > 0)
             {
                 result.isError = false;
                 result.message = "Get List Customer Success";
