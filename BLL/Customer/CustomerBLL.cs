@@ -129,8 +129,5 @@ namespace VRMS_3layers.BLL.Customer
             }
             return result;
         }
-
-        
-
     }
 }
