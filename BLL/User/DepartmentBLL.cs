@@ -37,5 +37,27 @@ namespace VRMS_3layers.BLL.User
             }
             return result;
         }
+
+        public static ResultObject addNewDepartment(MdDepartment newDepartment)
+        {
+            ResultObject result = new ResultObject();
+            MdDepartment updatedDepartment = DepartmentDAL.addNewDepartment(newDepartment);
+            if(updatedDepartment == null)
+            {
+                result.isError = true;
+                result.message = "Add new department Failed";
+                result.messageDetail = string.Empty;
+                result.dataObject = updatedDepartment;
+            }
+            else
+            {
+                result.isError = false;
+                result.message = "Add new department Success";
+                result.messageDetail = string.Empty;
+                result.dataObject = updatedDepartment;
+            }
+            return result;
+        }
+
     }
 }

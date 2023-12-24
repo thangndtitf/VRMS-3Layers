@@ -53,6 +53,49 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
+        public static decimal getLastIdOfDepartment()
+        {
+            decimal result = 0;
+            using (var _userDbContext = new UserDbContextcs())
+            {
+                result = _userDbContext.MdDepartments.Max(d => d.Departmentid);
+            }
+            return result;
+        }
+
+
+        public static MdDepartment addNewDepartment(MdDepartment newDepartment)
+        {
+            MdDepartment updateDepartment = null;
+            using (var _userDbContext = new UserDbContextcs())
+            {
+                try
+                {
+                    newDepartment.Departmentid = getLastIdOfDepartment() + 1;
+                    newDepartment.Createddate = DateOnly.FromDateTime(DateTime.Now);
+                    _userDbContext.Add(newDepartment);
+                    _userDbContext.SaveChanges();
+                    updateDepartment = newDepartment;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString);
+                }
+                
+
+            }
+
+                return updateDepartment;
+        }
+
+        public static MdDepartment findDepartmentById(decimal departmentId)
+        {
+            MdDepartment result = null;
+
+
+
+            return result;
+        }
 
     }
 }
