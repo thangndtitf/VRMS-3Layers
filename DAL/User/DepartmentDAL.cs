@@ -91,10 +91,13 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment findDepartmentById(decimal departmentId)
         {
             MdDepartment result = null;
+            using (var _userDbContext = new UserDbContextcs())
+            {
+
+            }
 
 
-
-            return result;
+                return result;
         }
 
     }
