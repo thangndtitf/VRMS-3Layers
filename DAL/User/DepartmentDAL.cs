@@ -6,8 +6,6 @@ namespace VRMS_3layers.DAL.User
 {
     public class DepartmentDAL
     {
-
-
         public static List<MdDepartment> getListDepartment()
         {
             List<MdDepartment> result = new List<MdDepartment>();
@@ -18,7 +16,7 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
-        public static MdDepartment getDepartById(int departmentId)
+        public static MdDepartment getDepartById(decimal departmentId)
         {
             MdDepartment? mdDepartment = null;
             using(var _userDbContext = new UserDbContextcs())
@@ -40,7 +38,7 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
-        public static MdDepartment updateDepartment(MdDepartment department)
+        public static MdDepartment updateDepartment(MdUpdateDepartment department)
         {
             MdDepartment result = null;
             using (var  _userDbContext = new UserDbContextcs())
@@ -81,21 +79,35 @@ namespace VRMS_3layers.DAL.User
                 {
                     Console.WriteLine(ex.ToString);
                 }
-                
-
             }
-
                 return updateDepartment;
         }
 
-        public static MdDepartment findDepartmentById(decimal departmentId)
+        public static Boolean deleteDepartment(decimal deleteDepartmentId)
         {
-            MdDepartment result = null;
+            Boolean result = false;
             using (var _userDbContext = new UserDbContextcs())
             {
-
+                try
+                {
+                        MdDepartment checkedDepartment = _userDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == deleteDepartmentId);
+                        if (checkedDepartment == null)
+                        {
+                            result = false;
+                        }
+                        else
+                        {
+                            checkedDepartment.Isdeleted = 1;
+                            checkedDepartment.Deleteddate = DateOnly.FromDateTime(DateTime.Now);
+                            _userDbContext.SaveChanges();
+                            result = true;
+                        }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
-
 
                 return result;
         }
