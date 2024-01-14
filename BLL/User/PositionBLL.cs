@@ -58,14 +58,33 @@ namespace VRMS_3Layers.BLL.User
             try
             {
                 newPosition.Positionname.Trim();
-                positionObj = PositionDAL.insertNewPosition(newPosition);
-                if(positionObj == null)
+                newPosition.Description.Trim();
+                if (PositionDAL.checkPositionExist(newPosition.Positionname) == true)
                 {
                     result.isError = true;
                     result.message = "Exception at Position BLL";
-                    result.messageDetail = String.Empty;
+                    result.messageDetail = "Position with name : " + newPosition.Positionname + " is exist";
                     result.dataObject = null;
                 }
+                else
+                {
+                    positionObj = PositionDAL.insertNewPosition(newPosition);
+                    if (positionObj == null)
+                    {
+                        result.isError = true;
+                        result.message = "Exception at Position BLL";
+                        result.messageDetail = String.Empty;
+                        result.dataObject = null;
+                    }
+                    else
+                    {
+                        result.isError = false;
+                        result.message = "Insert new Position success";
+                        result.messageDetail = String.Empty;
+                        result.dataObject = positionObj;
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -78,6 +97,100 @@ namespace VRMS_3Layers.BLL.User
             return result;
         }
 
-	}
+        public static ResultObject updatePosition(MdPosition updatePosition)
+        {
+            ResultObject result = new ResultObject();
+            try
+            {
+
+                MdPosition checkPosition = PositionDAL.findPosition(updatePosition.Positionid);
+                if(checkPosition == null)
+                {
+                    result.isError = true;
+                    result.message = "Cannot find position with Id = " + updatePosition.Positionid.ToString();
+                    result.messageDetail = String.Empty;
+                    result.dataObject = null;
+                }
+
+                else
+                {
+                    checkPosition = PositionDAL.updatePosition(updatePosition);
+                    if(checkPosition == null)
+                    {
+                        result.isError = true;
+                        result.message = "Execption at Update position BLL";
+                        result.messageDetail = String.Empty;
+                        result.dataObject = null;
+                    }
+                    else
+                    {
+                        result.isError = false;
+                        result.message = "Update Position success";
+                        result.messageDetail = String.Empty;
+                        result.dataObject = checkPosition;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.isError = true;
+                result.message = "Execption at Update position BLL";
+                result.messageDetail = ex.ToString();
+                result.dataObject = null;
+            }
+
+
+            return result;
+        }
+
+
+        public static ResultObject deletePosition(decimal deletePositionId)
+        {
+            ResultObject result = new ResultObject();
+            try
+            {
+
+                MdPosition checkPosition = PositionDAL.findPosition(deletePositionId);
+                if (checkPosition == null)
+                {
+                    result.isError = true;
+                    result.message = "Cannot find position with Id = " + deletePositionId.ToString();
+                    result.messageDetail = String.Empty;
+                    result.dataObject = null;
+                }
+
+                else
+                {
+                    checkPosition = PositionDAL.deletePosition(checkPosition);
+                    if (checkPosition == null)
+                    {
+                        result.isError = true;
+                        result.message = "Execption at Delete position BLL";
+                        result.messageDetail = String.Empty;
+                        result.dataObject = null;
+                    }
+                    else
+                    {
+                        result.isError = false;
+                        result.message = "Delete Position success";
+                        result.messageDetail = String.Empty;
+                        result.dataObject = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.isError = true;
+                result.message = "Execption at Delete position BLL";
+                result.messageDetail = ex.ToString();
+                result.dataObject = null;
+            }
+
+
+            return result;
+        }
+
+
+    }
 }
 
