@@ -1,4 +1,4 @@
-﻿using VRMS_3Layers.Models.User;
+﻿using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.DAL.User
 {
@@ -8,7 +8,7 @@ namespace VRMS_3layers.DAL.User
         {
             List<MdPosition> listPositions = new List<MdPosition>();
 
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {
@@ -26,7 +26,7 @@ namespace VRMS_3layers.DAL.User
         public static decimal getLastId()
         {
             decimal result = 0;
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {
@@ -46,7 +46,7 @@ namespace VRMS_3layers.DAL.User
         {
             bool result = false;
 
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {
@@ -77,7 +77,7 @@ namespace VRMS_3layers.DAL.User
             MdPosition result = new MdPosition();
             try
             {
-                using (var _userDbContext = new UserDbContextcs())
+                using (var _userDbContext = new ModelsDbContextcs())
                 {
                     insertPosition.Positionid = getLastId() + 1;
                     insertPosition.Isdeleted = 0;
@@ -102,7 +102,7 @@ namespace VRMS_3layers.DAL.User
         {
             MdPosition result = new MdPosition();
 
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {
@@ -122,7 +122,7 @@ namespace VRMS_3layers.DAL.User
         public static MdPosition updatePosition(MdPosition updatePosition)
         {
             MdPosition result = new MdPosition();
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {
@@ -143,7 +143,7 @@ namespace VRMS_3layers.DAL.User
         public static MdPosition deletePosition(MdPosition updatePosition)
         {
             MdPosition result = new MdPosition();
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {

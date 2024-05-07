@@ -1,6 +1,4 @@
-﻿
-
-using VRMS_3Layers.Models.User;
+﻿using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.DAL.User
 {
@@ -9,7 +7,7 @@ namespace VRMS_3layers.DAL.User
         public static List<MdDepartment> getListDepartment()
         {
             List<MdDepartment> result = new List<MdDepartment>();
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 result = _userDbContext.MdDepartments.Where<MdDepartment>(d => d.Isdeleted == 0).ToList();
             }
@@ -19,7 +17,7 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment getDepartById(decimal departmentId)
         {
             MdDepartment? mdDepartment = null;
-            using(var _userDbContext = new UserDbContextcs())
+            using(var _userDbContext = new ModelsDbContextcs())
             {
                 mdDepartment = _userDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == departmentId);
             }
@@ -29,7 +27,7 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment insertNewDepartment(MdDepartment department)
         {
             MdDepartment result = null;
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 _userDbContext.MdDepartments.Add(department);
                 _userDbContext.SaveChanges();
@@ -41,7 +39,7 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment updateDepartment(MdUpdateDepartment department)
         {
             MdDepartment result = null;
-            using (var  _userDbContext = new UserDbContextcs())
+            using (var  _userDbContext = new ModelsDbContextcs())
             {
                 result = _userDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == department.Departmentid);
                 result.Departmentname = department.Departmentname;
@@ -54,7 +52,7 @@ namespace VRMS_3layers.DAL.User
         public static decimal getLastIdOfDepartment()
         {
             decimal result = 0;
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 result = _userDbContext.MdDepartments.Max(d => d.Departmentid);
             }
@@ -65,7 +63,7 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment addNewDepartment(MdDepartment newDepartment)
         {
             MdDepartment updateDepartment = null;
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {
@@ -86,7 +84,7 @@ namespace VRMS_3layers.DAL.User
         public static Boolean deleteDepartment(decimal deleteDepartmentId)
         {
             Boolean result = false;
-            using (var _userDbContext = new UserDbContextcs())
+            using (var _userDbContext = new ModelsDbContextcs())
             {
                 try
                 {

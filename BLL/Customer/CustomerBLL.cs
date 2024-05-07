@@ -1,6 +1,6 @@
 ﻿using VRMS_3layers.DAL.Customer;
 using VRMS_3layers.Models.ResultObj;
-using VRMS_3Layers.Models.Customer;
+using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.BLL.Customer
 {

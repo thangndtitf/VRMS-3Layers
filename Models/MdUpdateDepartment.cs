@@ -1,5 +1,5 @@
 ﻿using System;
-namespace VRMS_3Layers.Models.User
+namespace VRMS_3Layers.Models
 {
 	public class MdUpdateDepartment
 	{

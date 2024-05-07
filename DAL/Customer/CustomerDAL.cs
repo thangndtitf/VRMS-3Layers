@@ -1,21 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql;
-using NpgsqlTypes;
-using System.Data.SqlClient;
-using VRMS_3Layers.Models.Customer;
+
+using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.DAL.Customer
 {
     public class CustomerDAL
     {
-        private readonly CustomerDbContextcs customerDbContextcs = new CustomerDbContextcs();
+        private readonly ModelsDbContextcs odelsDbContextcs = new ModelsDbContextcs();
 
 
         public List<MdCustomer>? GetListCustomer()
         {
             try
             {
-                List<MdCustomer> customerList = customerDbContextcs.MdCustomers.FromSqlRaw
+                List<MdCustomer> customerList = odelsDbContextcs.MdCustomers.FromSqlRaw
                     ("select * from  \"MD\".customer_getlist()").ToList();
                 return customerList;
             }
@@ -33,14 +32,14 @@ namespace VRMS_3layers.DAL.Customer
             }
             else
             {
-                return customerDbContextcs.MdCustomers.FirstOrDefault(c=> c.Customerid == customerId);
+                return odelsDbContextcs.MdCustomers.FirstOrDefault(c=> c.Customerid == customerId);
             }
         }
 
         public bool insertNewCus(MdCustomer customer)
         {
             bool result = false;
-            NpgsqlConnection npgsqlConnection = (NpgsqlConnection)customerDbContextcs.Database.GetDbConnection();
+            NpgsqlConnection npgsqlConnection = (NpgsqlConnection)odelsDbContextcs.Database.GetDbConnection();
             try
             {
 
@@ -76,7 +75,7 @@ namespace VRMS_3layers.DAL.Customer
         public decimal getLastIdCustomer()
         {
             decimal lastIdCustomer = 0;
-            lastIdCustomer = customerDbContextcs.MdCustomers.Max(c => c.Customerid);
+            lastIdCustomer = odelsDbContextcs.MdCustomers.Max(c => c.Customerid);
             return lastIdCustomer;
         }
 
@@ -84,7 +83,7 @@ namespace VRMS_3layers.DAL.Customer
         public MdCustomer updateCustomer(MdCustomer customer)
         {
 
-            MdCustomer updateCustomer = customerDbContextcs.MdCustomers.FirstOrDefault(c => c.Customerid == customer.Customerid);
+            MdCustomer updateCustomer = odelsDbContextcs.MdCustomers.FirstOrDefault(c => c.Customerid == customer.Customerid);
             if (updateCustomer != null)
             {
                 updateCustomer.Customerfirstname = customer.Customerfirstname;
@@ -93,7 +92,7 @@ namespace VRMS_3layers.DAL.Customer
                 updateCustomer.Customerphone = customer.Customerphone;
                 updateCustomer.Customeremail = customer.Customeremail;
                 updateCustomer.Customerfulladdress = customer.Customerfulladdress;
-                customerDbContextcs.SaveChanges();
+                odelsDbContextcs.SaveChanges();
             }
             else
             {
@@ -109,10 +108,10 @@ namespace VRMS_3layers.DAL.Customer
             bool result = false;
             if (FindCustomerById(customerId) != null)
             {
-                MdCustomer customerDelete = customerDbContextcs.MdCustomers.FirstOrDefault(c => c.Customerid == customerId);
+                MdCustomer customerDelete = odelsDbContextcs.MdCustomers.FirstOrDefault(c => c.Customerid == customerId);
                 customerDelete.Isdeleted = 1;
                 customerDelete.Deleteddate = DateOnly.FromDateTime(DateTime.Now);
-                customerDbContextcs.SaveChanges();
+                odelsDbContextcs.SaveChanges();
             }
             else
             {
