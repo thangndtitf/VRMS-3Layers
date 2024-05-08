@@ -7,6 +7,9 @@ namespace VRMS_3Layers.BLL.User
 {
 	public class PositionBLL
 	{
+        /*
+         Get List Position còn hiệu lực 
+         */
 		public static ResultObject getListPosition()
 		{
 			ResultObject result = new ResultObject();
@@ -50,7 +53,9 @@ namespace VRMS_3Layers.BLL.User
 			return result;
 		}
 
-
+        /*
+         Khởi tạo mới dữ liệu Position 
+         */
         public static ResultObject insertNewPosition(MdPosition newPosition)
         {
             ResultObject result = new ResultObject();
@@ -97,6 +102,9 @@ namespace VRMS_3Layers.BLL.User
             return result;
         }
 
+        /*
+         Update dữ liệu Position 
+         */
         public static ResultObject updatePosition(MdPosition updatePosition)
         {
             ResultObject result = new ResultObject();
@@ -143,7 +151,9 @@ namespace VRMS_3Layers.BLL.User
             return result;
         }
 
-
+        /*
+         Xoá dữ liệu Position 
+         */
         public static ResultObject deletePosition(decimal deletePositionId)
         {
             ResultObject result = new ResultObject();

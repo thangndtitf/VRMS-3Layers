@@ -4,6 +4,10 @@ namespace VRMS_3layers.DAL.User
 {
     public class DepartmentDAL
     {
+
+        /*
+         Hàm get All Department vẫn còn hiệu lực ( Isdeleted == 0 )
+         */
         public static List<MdDepartment> getListDepartment()
         {
             List<MdDepartment> result = new List<MdDepartment>();
@@ -14,6 +18,9 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
+        /*
+         Hàm get 1 Department bằng departmentID
+         */
         public static MdDepartment getDepartById(decimal departmentId)
         {
             MdDepartment? mdDepartment = null;
@@ -36,6 +43,9 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
+        /*
+         Hàm Update dữ liệu Department dựa vào ID
+         */
         public static MdDepartment updateDepartment(MdUpdateDepartment department)
         {
             MdDepartment result = null;
@@ -49,6 +59,9 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
+        /*
+         Hàm để lấy ID cuối cùng của Department
+         */
         public static decimal getLastIdOfDepartment()
         {
             decimal result = 0;
@@ -59,7 +72,9 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
-
+        /*
+         Hàm để insert data mới cho Department
+         */
         public static MdDepartment addNewDepartment(MdDepartment newDepartment)
         {
             MdDepartment updateDepartment = null;
@@ -81,6 +96,9 @@ namespace VRMS_3layers.DAL.User
                 return updateDepartment;
         }
 
+        /*
+         Hàm dùng để xoá dữ liệu Department dựa vào ID
+         */
         public static Boolean deleteDepartment(decimal deleteDepartmentId)
         {
             Boolean result = false;

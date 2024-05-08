@@ -4,6 +4,9 @@ namespace VRMS_3layers.DAL.User
 {
     public class PositionDAL
     {
+        /*
+         Get danh sách position còn hiệu lực ( Isdeleted == 0 )
+         */
         public static List<MdPosition> getListPosition()
         {
             List<MdPosition> listPositions = new List<MdPosition>();
@@ -23,6 +26,9 @@ namespace VRMS_3layers.DAL.User
             return listPositions;
         }
 
+        /*
+         Get ID cuối cùng của Position 
+         */
         public static decimal getLastId()
         {
             decimal result = 0;
@@ -41,7 +47,9 @@ namespace VRMS_3layers.DAL.User
                 return result;
         }
 
-
+        /*
+         CHeck Position có exist hay không dựa vào positionName
+         */
         public static bool checkPositionExist(String positionName)
         {
             bool result = false;
@@ -71,7 +79,9 @@ namespace VRMS_3layers.DAL.User
             return result;
         }
 
-
+        /*
+         * Insert mới dữ liệu của position 
+         */
         public static MdPosition insertNewPosition(MdPosition insertPosition)
         {
             MdPosition result = new MdPosition();
@@ -97,7 +107,9 @@ namespace VRMS_3layers.DAL.User
         }
 
 
-
+        /*
+         Tìm kiếm position dựa vào ID 
+         */
         public static MdPosition findPosition(decimal positionId)
         {
             MdPosition result = new MdPosition();
@@ -118,7 +130,9 @@ namespace VRMS_3layers.DAL.User
                 return result;
         }
 
-
+        /*
+         Update dữ liệu của Position 
+         */
         public static MdPosition updatePosition(MdPosition updatePosition)
         {
             MdPosition result = new MdPosition();
@@ -140,6 +154,9 @@ namespace VRMS_3layers.DAL.User
                 return result;
         }
 
+        /*
+         Xoá dữ liệu của Position 
+         */
         public static MdPosition deletePosition(MdPosition updatePosition)
         {
             MdPosition result = new MdPosition();

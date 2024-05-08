@@ -6,8 +6,10 @@ namespace VRMS_3layers.BLL.User
 {
     public class DepartmentBLL
     {
-        //  private  DepartmentDAL _departmentDAL = new DepartmentDAL();
-      // DepartmentDAL _departmentDAL = new DepartmentDAL();
+
+        /*
+         Hàm get All Department còn hiệu lực
+         */
         public static ResultObject getListDepartment()
         {
             
@@ -53,6 +55,9 @@ namespace VRMS_3layers.BLL.User
             return result;
         }
 
+        /*
+         Hàm thêm mới Department 
+         */
         public static ResultObject addNewDepartment(MdDepartment newDepartment)
         {
             ResultObject result = new ResultObject();
@@ -75,6 +80,9 @@ namespace VRMS_3layers.BLL.User
         }
 
 
+        /*
+         Hàm update dữ liệu Department
+         */
         public static ResultObject updateDepartment(MdUpdateDepartment updateDepartment)
         {
             ResultObject result = new ResultObject();
@@ -120,7 +128,9 @@ namespace VRMS_3layers.BLL.User
             return result;
         }
 
-
+        /*
+         Xoá dữ liệu Department dựa vào departmentID
+         */
         public static ResultObject deleteDepartment(decimal deleteDepartmentId)
         {
             ResultObject result = new ResultObject();
