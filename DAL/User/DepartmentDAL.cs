@@ -11,9 +11,9 @@ namespace VRMS_3layers.DAL.User
         public static List<MdDepartment> getListDepartment()
         {
             List<MdDepartment> result = new List<MdDepartment>();
-            using (var _userDbContext = new ModelsDbContextcs())
+            using (var _modelDbContext = new ModelsDbContextcs())
             {
-                result = _userDbContext.MdDepartments.Where<MdDepartment>(d => d.Isdeleted == 0).ToList();
+                result = _modelDbContext.MdDepartments.Where<MdDepartment>(d => d.Isdeleted == 0).ToList();
             }
             return result;
         }
@@ -24,9 +24,9 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment getDepartById(decimal departmentId)
         {
             MdDepartment? mdDepartment = null;
-            using(var _userDbContext = new ModelsDbContextcs())
+            using(var _modelDbContext = new ModelsDbContextcs())
             {
-                mdDepartment = _userDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == departmentId);
+                mdDepartment = _modelDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == departmentId);
             }
             return mdDepartment;
         }
@@ -34,10 +34,10 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment insertNewDepartment(MdDepartment department)
         {
             MdDepartment result = null;
-            using (var _userDbContext = new ModelsDbContextcs())
+            using (var _modelDbContext = new ModelsDbContextcs())
             {
-                _userDbContext.MdDepartments.Add(department);
-                _userDbContext.SaveChanges();
+                _modelDbContext.MdDepartments.Add(department);
+                _modelDbContext.SaveChanges();
                 result = department;
             }
             return result;
@@ -49,12 +49,12 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment updateDepartment(MdUpdateDepartment department)
         {
             MdDepartment result = null;
-            using (var  _userDbContext = new ModelsDbContextcs())
+            using (var  _modelDbContext = new ModelsDbContextcs())
             {
-                result = _userDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == department.Departmentid);
+                result = _modelDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == department.Departmentid);
                 result.Departmentname = department.Departmentname;
                 result.Description = department.Description;
-                _userDbContext.SaveChanges();
+                _modelDbContext.SaveChanges();
             }
             return result;
         }
@@ -65,9 +65,9 @@ namespace VRMS_3layers.DAL.User
         public static decimal getLastIdOfDepartment()
         {
             decimal result = 0;
-            using (var _userDbContext = new ModelsDbContextcs())
+            using (var _modelDbContext = new ModelsDbContextcs())
             {
-                result = _userDbContext.MdDepartments.Max(d => d.Departmentid);
+                result = _modelDbContext.MdDepartments.Max(d => d.Departmentid);
             }
             return result;
         }
@@ -78,14 +78,14 @@ namespace VRMS_3layers.DAL.User
         public static MdDepartment addNewDepartment(MdDepartment newDepartment)
         {
             MdDepartment updateDepartment = null;
-            using (var _userDbContext = new ModelsDbContextcs())
+            using (var _modelDbContext = new ModelsDbContextcs())
             {
                 try
                 {
                     newDepartment.Departmentid = getLastIdOfDepartment() + 1;
                     newDepartment.Createddate = DateOnly.FromDateTime(DateTime.Now);
-                    _userDbContext.Add(newDepartment);
-                    _userDbContext.SaveChanges();
+                    _modelDbContext.Add(newDepartment);
+                    _modelDbContext.SaveChanges();
                     updateDepartment = newDepartment;
                 }
                 catch (Exception ex)
@@ -102,11 +102,11 @@ namespace VRMS_3layers.DAL.User
         public static Boolean deleteDepartment(decimal deleteDepartmentId)
         {
             Boolean result = false;
-            using (var _userDbContext = new ModelsDbContextcs())
+            using (var _modelDbContext = new ModelsDbContextcs())
             {
                 try
                 {
-                        MdDepartment checkedDepartment = _userDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == deleteDepartmentId);
+                        MdDepartment checkedDepartment = _modelDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == deleteDepartmentId);
                         if (checkedDepartment == null)
                         {
                             result = false;
@@ -115,7 +115,7 @@ namespace VRMS_3layers.DAL.User
                         {
                             checkedDepartment.Isdeleted = 1;
                             checkedDepartment.Deleteddate = DateOnly.FromDateTime(DateTime.Now);
-                            _userDbContext.SaveChanges();
+                            _modelDbContext.SaveChanges();
                             result = true;
                         }
                 }

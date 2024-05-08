@@ -9,7 +9,7 @@ namespace VRMS_3layers.DAL.User
         /*
          Hàm get All thông tin User
          */
-        public static List<MdUser> getListUsers()
+        public static List<MdUser> GetListUsers()
         {
             List<MdUser> result = new List<MdUser>();
 
@@ -23,7 +23,7 @@ namespace VRMS_3layers.DAL.User
         /*
          Hàm get 1 user by ID 
          */
-        public static MdUser getUserById(decimal userId)
+        public static MdUser GetUserById(decimal userId)
         {
             MdUser? mdUser = null;
 
@@ -38,7 +38,7 @@ namespace VRMS_3layers.DAL.User
         /*
          Hàm dùng để lấy được ID cuối cùng của dữ liệu Users
          */
-        public static decimal getLastUserId()
+        public static decimal GetLastUserId()
         {
             decimal result = 0;
             using(var _modelDbContext = new ModelsDbContextcs())
@@ -51,24 +51,78 @@ namespace VRMS_3layers.DAL.User
         /*
          Hàm dùng để insert dữ liệu mới cho User
          */
-        public static MdUser insertUser(MdUser mdUser)
+        public static MdUser InsertUser(MdUser mdUser)
         {
             MdUser? result = null;
             using(var _modelDbContext = new ModelsDbContextcs())
             {
                 try
                 {
-                    mdUser.Username = getLastUserId() + 1;
+                    mdUser.Username = GetLastUserId() + 1;
                     mdUser.Createddate = DateOnly.FromDateTime(DateTime.Now);
+                    mdUser.Isactived = 1;
+                    mdUser.Isdeleted = 0;
                     _modelDbContext.Add(mdUser);
                     _modelDbContext.SaveChanges();
                     result = mdUser;
                 }
                 catch (Exception ex)
                 {
-
+                    // NOTE nhớ ghi log phần này bắng Serilog
                 }
             }
+            return result;
+        }
+
+        /*
+         Hàm dùng để Update dữ liệu User
+         */
+        public static MdUser UpdateUser(MdUpdateUser mdUpdateUser)
+        {
+            MdUser? result = null;
+            using (var _modelDbContext = new ModelsDbContextcs())
+            {
+                result = _modelDbContext.MdUsers.FirstOrDefault(u => u.Username == mdUpdateUser.Username);
+                if(result == null)
+                {
+                    return result;
+                }
+                else
+                {
+                    result.Userfullname = mdUpdateUser.Userfullname;
+                    result.Insitedate = mdUpdateUser.Insitedate;
+                    result.Isactived = mdUpdateUser.Isactived;
+                    result.Usercardid = mdUpdateUser.Usercardid;
+                    result.Description = mdUpdateUser.Description;
+                    result.Userfulladdress = mdUpdateUser.Userfulladdress;
+                }
+            }
+            return result;
+        }
+
+        /*
+        Hàm dùng để xoá dữ liệu User 
+        */
+        public static Boolean DeleteUser(decimal userName)
+        {
+            Boolean result = false;
+            using (var _modelDbContext = new ModelsDbContextcs())
+            {
+                MdUser checkUser = _modelDbContext.MdUsers.FirstOrDefault(u => u.Username == userName);
+                if(checkUser.Isactived == 0 || checkUser.Isdeleted == 1)
+                {
+                    result = false;
+                    return result;
+                }
+                else
+                {
+                    checkUser.Isactived = 0;
+                    checkUser.Isdeleted = 1;
+                    _modelDbContext.SaveChanges();
+                    result = true;
+                }
+            }
+
             return result;
         }
     }
