@@ -1,38 +1,78 @@
-﻿using VRMS_3Layers.Models;
+﻿using System.Reflection;
+
+using Serilog;
+
+using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.DAL.User
 {
     public class DepartmentDAL
     {
 
+        //private static MethodBase currentMethod = MethodBase.GetCurrentMethod();
         /*
          Hàm get All Department vẫn còn hiệu lực ( Isdeleted == 0 )
          */
         public static List<MdDepartment> getListDepartment()
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             List<MdDepartment> result = new List<MdDepartment>();
             using (var _modelDbContext = new ModelsDbContextcs())
             {
                 result = _modelDbContext.MdDepartments.Where<MdDepartment>(d => d.Isdeleted == 0).ToList();
             }
+
+            Log.Information(">>> End getListDepartment >>> " + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
-
+            
         /*
          Hàm get 1 Department bằng departmentID
          */
         public static MdDepartment getDepartById(decimal departmentId)
         {
+
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             MdDepartment? mdDepartment = null;
             using(var _modelDbContext = new ModelsDbContextcs())
             {
                 mdDepartment = _modelDbContext.MdDepartments.FirstOrDefault(d => d.Departmentid == departmentId);
             }
+
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return mdDepartment;
         }
 
         public static MdDepartment insertNewDepartment(MdDepartment department)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             MdDepartment result = null;
             using (var _modelDbContext = new ModelsDbContextcs())
             {
@@ -40,6 +80,8 @@ namespace VRMS_3layers.DAL.User
                 _modelDbContext.SaveChanges();
                 result = department;
             }
+
+            Log.Information(">>> End >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 
@@ -48,6 +90,16 @@ namespace VRMS_3layers.DAL.User
          */
         public static MdDepartment updateDepartment(MdUpdateDepartment department)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             MdDepartment result = null;
             using (var  _modelDbContext = new ModelsDbContextcs())
             {
@@ -56,6 +108,8 @@ namespace VRMS_3layers.DAL.User
                 result.Description = department.Description;
                 _modelDbContext.SaveChanges();
             }
+
+            Log.Information(">>> End >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 
@@ -64,11 +118,23 @@ namespace VRMS_3layers.DAL.User
          */
         public static decimal getLastIdOfDepartment()
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             decimal result = 0;
             using (var _modelDbContext = new ModelsDbContextcs())
             {
                 result = _modelDbContext.MdDepartments.Max(d => d.Departmentid);
             }
+
+            Log.Information(">>> End >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 
@@ -77,6 +143,16 @@ namespace VRMS_3layers.DAL.User
          */
         public static MdDepartment addNewDepartment(MdDepartment newDepartment)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             MdDepartment updateDepartment = null;
             using (var _modelDbContext = new ModelsDbContextcs())
             {
@@ -93,7 +169,9 @@ namespace VRMS_3layers.DAL.User
                     Console.WriteLine(ex.ToString);
                 }
             }
-                return updateDepartment;
+
+            Log.Information(">>> End >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+            return updateDepartment;
         }
 
         /*
@@ -101,6 +179,16 @@ namespace VRMS_3layers.DAL.User
          */
         public static Boolean deleteDepartment(decimal deleteDepartmentId)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             Boolean result = false;
             using (var _modelDbContext = new ModelsDbContextcs())
             {
@@ -124,8 +212,8 @@ namespace VRMS_3layers.DAL.User
                     Console.WriteLine(ex.ToString());
                 }
             }
-
-                return result;
+            Log.Information(">>> End >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+            return result;
         }
 
     }

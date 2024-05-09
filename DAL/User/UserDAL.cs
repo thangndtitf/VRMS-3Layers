@@ -1,4 +1,4 @@
-﻿
+﻿using Serilog;
 using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.DAL.User
@@ -6,18 +6,30 @@ namespace VRMS_3layers.DAL.User
     public class UserDAL
     {
 
-        /*
-         Hàm get All thông tin User
-         */
-        public static List<MdUser> GetListUsers()
+    /*
+     Hàm get All thông tin User
+     */
+    public static List<MdUser> GetListUsers()
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .CreateLogger();
+
+
+            Log.Information(">>> Begin GetListUsers >>> " + DateOnly.FromDateTime(DateTime.Now) + "\n");
             List<MdUser> result = new List<MdUser>();
 
             using(var _modelDbContext = new ModelsDbContextcs())
             {
                 _modelDbContext.MdUsers.Where<MdUser>(c => c.Isdeleted == 0).ToList();
             }
+
+            Log.Information(">>> End GetListUsers >>> " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             return result;
+
         }
 
         /*
