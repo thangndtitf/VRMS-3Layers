@@ -1,4 +1,6 @@
-﻿using VRMS_3layers.DAL.User;
+﻿using Serilog;
+using System.Reflection;
+using VRMS_3layers.DAL.User;
 using VRMS_3layers.Models.ResultObj;
 using VRMS_3Layers.Models;
 
@@ -12,9 +14,17 @@ namespace VRMS_3layers.BLL.User
          */
         public static ResultObject getListDepartment()
         {
-            
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             ResultObject result = new ResultObject();
-            
             List<MdDepartment> listDepartment = DepartmentDAL.getListDepartment();
             if(listDepartment != null)
             {
@@ -52,6 +62,8 @@ namespace VRMS_3layers.BLL.User
                 result.messageDetail = string.Empty;
                 result.dataObject = listDepartment;
             }
+
+            Log.Information(">>> End >>> " + currentMethod.Name + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 
@@ -60,6 +72,16 @@ namespace VRMS_3layers.BLL.User
          */
         public static ResultObject addNewDepartment(MdDepartment newDepartment)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             ResultObject result = new ResultObject();
             MdDepartment insertedDepartment = DepartmentDAL.addNewDepartment(newDepartment);
             if(insertedDepartment == null)
@@ -76,6 +98,8 @@ namespace VRMS_3layers.BLL.User
                 result.messageDetail = string.Empty;
                 result.dataObject = insertedDepartment;
             }
+
+            Log.Information(">>> End >>> " + currentMethod.Name + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 
@@ -85,6 +109,16 @@ namespace VRMS_3layers.BLL.User
          */
         public static ResultObject updateDepartment(MdUpdateDepartment updateDepartment)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             ResultObject result = new ResultObject();
 
             if(updateDepartment == null)
@@ -125,6 +159,7 @@ namespace VRMS_3layers.BLL.User
                 }
             }
 
+            Log.Information(">>> End >>> " + currentMethod.Name + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 
@@ -133,6 +168,16 @@ namespace VRMS_3layers.BLL.User
          */
         public static ResultObject deleteDepartment(decimal deleteDepartmentId)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .CreateLogger();
+
+            // Dùng để lấy tên function hiên tại đang thực thi
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            Log.Information(">>> Begin >>> " + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+
             ResultObject result = new ResultObject();
 
             if (deleteDepartmentId <= 0)
@@ -160,6 +205,8 @@ namespace VRMS_3layers.BLL.User
                     result.dataObject = null;
                 }
             }
+
+            Log.Information(">>> End >>> " + currentMethod.Name + DateOnly.FromDateTime(DateTime.Now) + "\n");
             return result;
         }
 

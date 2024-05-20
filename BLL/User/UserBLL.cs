@@ -1,4 +1,6 @@
-﻿using VRMS_3layers.DAL.User;
+﻿using Serilog;
+using System.Reflection;
+using VRMS_3layers.DAL.User;
 using VRMS_3layers.Models.ResultObj;
 using VRMS_3Layers.Models;
 
@@ -12,7 +14,11 @@ namespace VRMS_3Layers.BLL.User
 		 */
 		public static ResultObject GetListUser()
 		{
-			ResultObject result = new ResultObject();
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+
+            Log.Information(">>> Begin : " + currentMethod.Name + "\n");
+
+            ResultObject result = new ResultObject();
 			List<MdUser> listUser = UserDAL.GetListUsers();
 			if(listUser == null)
 			{
@@ -45,7 +51,8 @@ namespace VRMS_3Layers.BLL.User
                 result.messageDetail = string.Empty; ;
                 result.dataObject = listUser;
             }
-			return result;
+            Log.Information(">>> End : " + currentMethod.Name + "\n");
+            return result;
 		}
 
 		/*
@@ -53,7 +60,11 @@ namespace VRMS_3Layers.BLL.User
 		*/
 		public static ResultObject GetUserById(decimal userName)
 		{
-			ResultObject result = new ResultObject();
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+
+            Log.Information(">>> Begin : " + currentMethod.Name + "\n");
+
+            ResultObject result = new ResultObject();
 			MdUser user = UserDAL.GetUserById(userName);
 
 			if(user == null)
@@ -77,18 +88,109 @@ namespace VRMS_3Layers.BLL.User
                 result.messageDetail = string.Empty; ;
                 result.dataObject = user;
             }
-			return result;
+            Log.Information(">>> End : " + currentMethod.Name + "\n");
+            return result;
 		}
 
-		/*
+        /*
 		 Hàm để insert mới dữ liệu User 
 		 */
-		//public static ResultObject InsertNewUser(MdUser newUser)
-		//{
-  //          ResultObject result = new ResultObject();
-		//	MdUser insertUser = UserDAL.InsertUser(newUser);
+        public static ResultObject InsertNewUser(MdUser newUser)
+        {
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
 
-  //      }
+            Log.Information(">>> Begin : " + currentMethod.Name + "\n");
+
+            ResultObject result = new ResultObject();
+            MdUser insertUser = UserDAL.InsertUser(newUser);
+            if (insertUser == null)
+            {
+                result.isError = true;
+                result.message = "Insert User Error";
+                result.messageDetail = "Insert User " + insertUser.Username + " is Error";
+                result.dataObject = null;
+            }
+            else if (insertUser.Isdeleted == 1 || insertUser.Isactived == 0)
+            {
+
+                Log.Error(">>> Error at : " + currentMethod.Name + "Insert User " + insertUser.Username + " is Deleted or Unactive " + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+                result.isError = true;
+                result.message = "Insert User Error";
+                result.messageDetail = "Insert User " + insertUser.Username + " is Deleted or Unactive ";
+                result.dataObject = null;
+            }
+            else
+            {
+                result.isError = false;
+                result.message = "Insert User " + insertUser.Username + "Success ";
+                result.messageDetail = string.Empty; ;
+                result.dataObject = insertUser;
+            }
+            Log.Information(">>> End : " + currentMethod.Name + "\n");
+            return result;
+        }
+
+        /*
+        Hàm để update dữ liệu User 
+        */
+        public static ResultObject UpdateUser(MdUpdateUser updateUser)
+        {
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+
+            Log.Information(">>> Begin : " + currentMethod.Name + "\n");
+
+            ResultObject result = new ResultObject();
+            MdUser updatedUser = UserDAL.UpdateUser(updateUser);
+            if(updatedUser == null)
+            {
+                Log.Error(">>> Error at " + currentMethod.Name + DateOnly.FromDateTime(DateTime.Now) + "\n");
+                result.isError = true;
+                result.message = "Update User " + updateUser.Username + "is Error ";
+                result.messageDetail = string.Empty; ;
+                result.dataObject = null;
+            }
+            else if (updateUser.Isactived == 0)
+            {
+                Log.Information("Unactive User " + updateUser.Username + " at " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+                result.isError = false;
+                result.message = "Update User " + updateUser.Username + "is Success ";
+                result.messageDetail = "Unactive User " + updateUser.Username + DateOnly.FromDateTime(DateTime.Now);
+                result.dataObject = null;
+            }
+            Log.Information(">>> End : " + currentMethod.Name + "\n");
+
+            return result;
+        }
+
+        /*
+        Hàm để delete dữ liệu User 
+        */
+        public static ResultObject DeleteUser(decimal userName)
+        {
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+
+            Log.Information(">>> Begin : " + currentMethod.Name + "\n");
+            ResultObject result = new ResultObject();
+            Boolean resultDelete = UserDAL.DeleteUser(userName);
+
+            if(resultDelete == false)
+            {
+                Log.Error(">>> Error at : " + currentMethod.Name + DateOnly.FromDateTime(DateTime.Now) + "\n");
+                result.isError = true;
+                result.message = "Delete User " + userName + "is Errror ";
+                result.messageDetail = String.Empty;
+                result.dataObject = null;
+            }
+            else
+            {
+                Log.Error(">>> Delete User: " + userName+ " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
+                result.isError = true;
+                result.message = "Delete User " + userName + "is Success ";
+                result.messageDetail = String.Empty;
+                result.dataObject = true;
+            }
+            return result;
+        }
     }
 }
 

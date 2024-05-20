@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using System.Reflection;
+using Serilog;
 using VRMS_3Layers.Models;
 
 namespace VRMS_3layers.DAL.User
@@ -81,6 +82,8 @@ namespace VRMS_3layers.DAL.User
                 catch (Exception ex)
                 {
                     // NOTE nhớ ghi log phần này bắng Serilog
+                    MethodBase currentMethod = MethodBase.GetCurrentMethod();
+                    Log.Error(">>> Error at : " + currentMethod.Name + ex.ToString() + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
                 }
             }
             return result;
