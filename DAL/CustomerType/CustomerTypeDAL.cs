@@ -86,7 +86,9 @@ namespace VRMS_3Layers.DAL.CustomerType
 		}
 
 
-
+		/*
+		 * Hàm dùng để Update dữ liệu CustomerType
+		 */
 		public static MdCustomertype updateCustomerType(MdCustomertype it_customerType)
 		{
 			Log.Logger = new LoggerConfiguration()
