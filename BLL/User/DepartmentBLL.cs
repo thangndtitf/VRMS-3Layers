@@ -17,7 +17,7 @@ namespace VRMS_3layers.BLL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -75,7 +75,7 @@ namespace VRMS_3layers.BLL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -112,7 +112,7 @@ namespace VRMS_3layers.BLL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -171,7 +171,7 @@ namespace VRMS_3layers.BLL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/DepartmentBLL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi

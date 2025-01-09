@@ -16,7 +16,7 @@ namespace VRMS_3Layers.DAL.CustomerType
             Log.Logger = new LoggerConfiguration()
 			.MinimumLevel.Debug()
 			.WriteTo.Console()
-			.WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
+			.WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
 			.CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -42,7 +42,7 @@ namespace VRMS_3Layers.DAL.CustomerType
 			Log.Logger = new LoggerConfiguration()
 				.MinimumLevel.Debug()
 				.WriteTo.Console()
-				.WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
+				.WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
 				.CreateLogger();
 			MethodBase currentMethod =  MethodBase.GetCurrentMethod();
 			Log.Information(">>> Begin >>>" + currentMethod.Name + " " + DateOnly.FromDateTime(DateTime.Now) + "\n");
@@ -67,7 +67,7 @@ namespace VRMS_3Layers.DAL.CustomerType
 			Log.Logger = new LoggerConfiguration()
 						.MinimumLevel.Debug()
 						.WriteTo.Console()
-						.WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
+						.WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
 						.CreateLogger();
 
 			MethodBase currentMethod =  MethodBase.GetCurrentMethod();
@@ -94,7 +94,7 @@ namespace VRMS_3Layers.DAL.CustomerType
 			Log.Logger = new LoggerConfiguration()
 						.MinimumLevel.Debug()
 						.WriteTo.Console()
-						.WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
+						.WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/CustomerTypeMD.txt")
 						.CreateLogger();
 
 			MethodBase currentMethod =  MethodBase.GetCurrentMethod();

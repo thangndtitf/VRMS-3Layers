@@ -23,8 +23,10 @@
 
   <ItemGroup>
     <None Remove="DAL\CustomerType\" />
+    <None Remove="BLL\CustomerTypeBLL\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\CustomerType\" />
+    <Folder Include="BLL\CustomerTypeBLL\" />
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -44,7 +44,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -66,7 +66,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -93,7 +93,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -121,7 +121,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -146,7 +146,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
@@ -182,7 +182,7 @@ namespace VRMS_3layers.DAL.User
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("/Users/nguyendinhtatthang/Documents - NguyenDinhTatThang’s MacBook Pro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
+            .WriteTo.File("/Users/nguyendinhtatthang/Documents-NguyenDinhTatThang’sMacBookPro/Develop/DotNetProject/VRMS_Log/logs/LogUserDAL.txt")
             .CreateLogger();
 
             // Dùng để lấy tên function hiên tại đang thực thi
